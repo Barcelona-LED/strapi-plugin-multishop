@@ -1,0 +1,195 @@
+openapi: 3.0.2
+info:
+  title: Strapi multishop Plugin
+  version: 1.0.0
+servers:
+  - url: http://localhost:1337
+    description: Local server
+externalDocs:
+  url: https://strapi.io/documentation
+  description: Strapi documentation
+paths:
+  /multishop/iso-shops:
+    get:
+      tags:
+        - ISO-shops
+      description: List iso-shops that the app can use
+      responses:
+        200:
+          description: The list of the shops the app can use
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/iso-shop'
+  /multishop/shops:
+    get:
+      tags:
+        - Shops
+      description: List shops used by the app
+      responses:
+        200:
+          description: A list of shops
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/shop'
+    post:
+      tags:
+        - Shops
+      description: Create a shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shopInputCreate'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shop'
+  /multishop/shops/{id}:
+    put:
+      tags:
+        - Shops
+      description: Update the name of a shop
+      parameters:
+        - $ref: '#/components/parameters/shop-id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shopInputUpdate'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shop'
+  /multishop/content-manager/actions/get-non-shopEnabled-fields:
+    post:
+      tags:
+        - Content-Manager
+      description: Return the non shopEnabled fields of a related entity in order to pre-fill the creation form of a related entity.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getNonShopEnabledFieldsInput'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nonShopEnabledFields:
+                    type: object
+                  stores:
+                    description: All related entities id and shop
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/components/schemas/id'
+                          description: Id of this related entity
+                        shop:
+                          type: string
+                          description: Code of the shop of this related entity
+
+components:
+  schemas:
+    id:
+      oneOf:
+        - type: string
+        - type: integer
+
+    shopInputCreate:
+      type: object
+      required:
+        - code
+        - isDefault
+      properties:
+        name:
+          type: string
+          description: Name of the shop
+        code:
+          type: string
+          description: ISO code of the shop
+        isDefault:
+          type: boolean
+          description: Set default shop (ignored if set to false)
+
+    shopInputUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the shop
+        isDefault:
+          type: boolean
+          description: Set default shop (ignored if set to false)
+
+    getNonShopEnabledFieldsInput:
+      type: object
+      required:
+        - model
+        - id
+        - shop
+      properties:
+        model:
+          type: string
+          description: Model of the entity
+        id:
+          $ref: '#/components/schemas/id'
+          description: Id of an entity related to the one that will be created
+        shop:
+          type: string
+          description: The shop of the entity that will be pre-filled with the non shopEnabled fields this route returns
+
+    shop:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        name:
+          type: string
+          description: Name of the shop
+        code:
+          type: string
+          description: ISO code of the shop
+        isDefault:
+          type: boolean
+          description: Is the default shop
+
+    iso-shop:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the shop
+        code:
+          type: string
+          description: ISO code of the shop
+
+  parameters:
+    shop-id:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: Shop id
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+security:
+  - bearerAuth: []

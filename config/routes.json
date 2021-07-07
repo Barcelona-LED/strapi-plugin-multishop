@@ -1,0 +1,53 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/shops",
+      "handler": "shops.listShops",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/shops",
+      "handler": "shops.createShop",
+      "config": {
+        "policies": [
+          "admin::isAuthenticatedAdmin",
+          ["plugins::content-manager.hasPermissions", ["plugins::multishop.shop.create"]]
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/shops/:id",
+      "handler": "shops.updateShop",
+      "config": {
+        "policies": [
+          "admin::isAuthenticatedAdmin",
+          ["plugins::content-manager.hasPermissions", ["plugins::multishop.shop.update"]]
+        ]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/shops/:id",
+      "handler": "shops.deleteShop",
+      "config": {
+        "policies": [
+          "admin::isAuthenticatedAdmin",
+          ["plugins::content-manager.hasPermissions", ["plugins::multishop.shop.delete"]]
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/content-manager/actions/get-non-shopEnabled-fields",
+      "handler": "content-types.getNonShopEnabledAttributes",
+      "config": {
+        "policies": ["admin::isAuthenticatedAdmin"]
+      }
+    }
+  ]
+}

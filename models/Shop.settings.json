@@ -1,0 +1,34 @@
+{
+  "collectionName": "multishop_shops",
+  "info": {
+    "name": "shop",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "min": 1,
+      "max": 50
+    },
+    "default_shop": {
+      "plugin": "multishop",
+      "model": "shop"
+    },
+    "url": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    }
+  }
+}
