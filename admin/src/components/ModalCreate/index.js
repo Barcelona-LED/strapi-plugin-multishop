@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
 import { Modal, ModalFooter, TabPanel, useUser } from 'strapi-helper-plugin';
 import { useIntl } from 'react-intl';
 import { Button } from '@buffetjs/core';
@@ -20,14 +19,6 @@ const ModalCreate = ({ onClose, isOpened }) => {
   const { fetchUserPermissions } = useUser();
   const shouldUpdatePermissions = useRef(false);
 
-  const options = (locales || [])
-    .map(locale => ({
-      label: shop.code,
-      value: shop.name,
-    }));
-
-  const defaultOption = options[0];
-
   if (isLoading) {
     return (
       <div>
@@ -37,6 +28,14 @@ const ModalCreate = ({ onClose, isOpened }) => {
       </div>
     );
   }
+
+  const options = (locales || [])
+    .map(locale => ({
+      label: locale.code,
+      value: locale.name,
+    }));
+
+  const defaultOption = options[0];
 
   const handleClosed = async () => {
     if (shouldUpdatePermissions.current) {
@@ -83,7 +82,7 @@ const ModalCreate = ({ onClose, isOpened }) => {
             >
               <TabPanel>
                 <BaseForm
-                  shops={options}
+                  locales={options}
                   defaultShop={defaultOption}
                 />
               </TabPanel>
