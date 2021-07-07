@@ -34,9 +34,9 @@ module.exports = {
 
     const shopsService = getService('shops');
 
-    const existingShop = await shopsService.findByCode(body.code);
+    const existingShop = await shopsService.findByUrl(body.url);
     if (existingShop) {
-      return ctx.badRequest('This shop already exists');
+      return ctx.badRequest('A shop in this path already exists');
     }
 
     shopToCreate = formatShop(shopToCreate);
