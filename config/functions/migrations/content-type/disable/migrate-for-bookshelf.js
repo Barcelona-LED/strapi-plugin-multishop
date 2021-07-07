@@ -5,7 +5,7 @@ const pmap = require('p-map');
 const BATCH_SIZE = 1000;
 
 const migrateForBookshelf = async (
-  { ORM, defaultShop definition, previousDefinition, model },
+  { ORM, defaultShop, definition, previousDefinition, model },
   context
 ) => {
   const storesTable = `${previousDefinition.collectionName}__stores`;

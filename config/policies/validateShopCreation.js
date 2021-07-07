@@ -8,7 +8,7 @@ const validateShopCreation = async (ctx, next) => {
   const { query, body } = ctx.request;
 
   const {
-    getValidShop
+    getValidShop,
     getNewStoresFrom,
     isShopEnabledContentType,
     getAndValidateRelatedEntity,

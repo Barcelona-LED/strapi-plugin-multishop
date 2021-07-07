@@ -194,7 +194,7 @@ const fillNonShopEnabledAttributes = (entry, relatedEntry, { model }) => {
 
 module.exports = {
   isShopEnabledContentType,
-  getValidShop
+  getValidShop,
   getNewStoresFrom,
   getShopEnabledAttributes,
   getNonShopEnabledAttributes,

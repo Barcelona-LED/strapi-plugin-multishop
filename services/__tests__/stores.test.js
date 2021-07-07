@@ -1,7 +1,7 @@
 'use strict';
 
 const {
-  assignDefaultShop
+  assignDefaultShop,
   syncStores,
   syncNonShopEnabledAttributes,
 } = require('../stores');

@@ -59,7 +59,7 @@ const syncNonShopEnabledAttributes = async (entry, { model }) => {
 };
 
 module.exports = {
-  assignDefaultShop
+  assignDefaultShop,
   syncStores,
   syncNonShopEnabledAttributes,
 };

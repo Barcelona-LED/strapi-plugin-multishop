@@ -25,8 +25,8 @@ const CMEditViewCopyShop = props => {
   return <Content {...props} />;
 };
 
-const Content = ({ appShops, currentShop stores, readPermissions }) => {
-  const options = generateOptions(appShops, currentShop stores, readPermissions);
+const Content = ({ appShops, currentShop, stores, readPermissions }) => {
+  const options = generateOptions(appShops, currentShop, stores, readPermissions);
 
   const { formatMessage } = useIntl();
   const dispatch = useDispatch();

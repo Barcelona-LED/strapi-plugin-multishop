@@ -8,10 +8,10 @@ import { getTrad } from '../../utils';
 import ShopList from '../../components/ShopList';
 
 const ShopSettingsPage = ({
-  canReadShop
-  canCreateShop
-  canDeleteShop
-  canUpdateShop
+  canReadShop,
+  canCreateShop,
+  canDeleteShop,
+  canUpdateShop,
 }) => {
   const { formatMessage } = useIntl();
   const [isOpenedCreateModal, setIsOpenedCreateModal] = useState(false);

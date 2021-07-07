@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-const generateOptions = (appShops, currentShop stores, permissions) => {
+const generateOptions = (appShops, currentShop, stores, permissions) => {
   return appShops
     .filter(({ code }) => {
       return (

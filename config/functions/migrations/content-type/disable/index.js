@@ -20,11 +20,11 @@ const before = async ({ model, definition, previousDefinition, ORM }, context) =
 
   if (model.orm === 'bookshelf') {
     await migrateForBookshelf(
-      { ORM, defaultShop definition, previousDefinition, model },
+      { ORM, defaultShop, definition, previousDefinition, model },
       context
     );
   } else if (model.orm === 'mongoose') {
-    await migrateForMongoose({ ORM, defaultShop model });
+    await migrateForMongoose({ ORM, defaultShop, model });
   }
 };
 

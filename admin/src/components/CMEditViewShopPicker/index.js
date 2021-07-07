@@ -9,7 +9,7 @@ import { DropdownIndicator, BaselineAlignment, selectStyles } from 'strapi-helpe
 import { useHistory } from 'react-router-dom';
 import { stringify } from 'qs';
 import { getTrad } from '../../utils';
-import { addStatusColorToShop createShopsOption } from './utils';
+import { addStatusColorToShop, createShopsOption } from './utils';
 import CMEditViewCopyShop from '../CMEditViewCopyShop';
 import OptionComponent from './Option';
 import Wrapper from './Wrapper';

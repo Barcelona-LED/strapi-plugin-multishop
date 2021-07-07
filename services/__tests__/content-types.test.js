@@ -2,7 +2,7 @@
 
 const {
   isShopEnabledContentType,
-  getValidShop
+  getValidShop,
   getNewStoresFrom,
   getAndValidateRelatedEntity,
   getNonShopEnabledAttributes,
@@ -139,7 +139,7 @@ describe('content-types service', () => {
           multishop: {
             services: {
               shops: {
-                getDefaultShop
+                getDefaultShop,
               },
             },
           },

@@ -1,6 +1,6 @@
 'use strict';
 
-const { listShops, createShop updateShop deleteShop } = require('../shops');
+const { listShops, createShop, updateShop, deleteShop } = require('../shops');
 const shopModel = require('../../models/Shop.settings');
 
 describe('Shops', () => {
@@ -53,8 +53,8 @@ describe('Shops', () => {
               shops: {
                 findByCode,
                 setIsDefault,
-                getDefaultShop
-                setDefaultShop
+                getDefaultShop,
+                setDefaultShop,
                 create,
               },
             },
@@ -89,7 +89,7 @@ describe('Shops', () => {
               shops: {
                 findByCode,
                 setIsDefault,
-                getDefaultShop
+                getDefaultShop,
                 create,
               },
             },
@@ -127,7 +127,7 @@ describe('Shops', () => {
               shops: {
                 findByCode,
                 setIsDefault,
-                getDefaultShop
+                getDefaultShop,
                 create,
               },
             },
@@ -168,7 +168,7 @@ describe('Shops', () => {
               shops: {
                 findById,
                 setIsDefault,
-                setDefaultShop
+                setDefaultShop,
                 update,
               },
             },
@@ -210,7 +210,7 @@ describe('Shops', () => {
               shops: {
                 findById,
                 setIsDefault,
-                setDefaultShop
+                setDefaultShop,
                 update,
               },
             },
@@ -253,7 +253,7 @@ describe('Shops', () => {
               shops: {
                 findById,
                 setIsDefault,
-                getDefaultShop
+                getDefaultShop,
                 delete: deleteFn,
               },
             },
@@ -287,7 +287,7 @@ describe('Shops', () => {
             services: {
               shops: {
                 findById,
-                getDefaultShop
+                getDefaultShop,
                 delete: deleteFn,
               },
             },

@@ -84,9 +84,9 @@ module.exports = {
   create,
   update,
   count,
-  setDefaultShop
-  getDefaultShop
+  setDefaultShop,
+  getDefaultShop,
   setIsDefault,
   delete: deleteFn,
-  initDefaultShop
+  initDefaultShop,
 };

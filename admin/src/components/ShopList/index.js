@@ -12,7 +12,7 @@ import ModalEdit from '../ModalEdit';
 import ModalDelete from '../ModalDelete';
 import ModalCreate from '../ModalCreate';
 
-const ShopList = ({ canUpdateShop canDeleteShop onToggleCreateModal, isCreating }) => {
+const ShopList = ({ canUpdateShop, canDeleteShop, onToggleCreateModal, isCreating }) => {
   const [shopToDelete, setShopToDelete] = useState();
   const [shopToEdit, setShopToEdit] = useState();
   const { shops, isLoading } = useShops();

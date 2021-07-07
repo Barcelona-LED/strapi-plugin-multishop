@@ -29,7 +29,7 @@ describe('Multishop | Components | CMEditViewCopyShop | utils', () => {
         { label: 'Italian', value: 3 },
       ];
 
-      expect(generateOptions(appShops, currentShop stores, permissions)).toEqual(
+      expect(generateOptions(appShops, currentShop, stores, permissions)).toEqual(
         expected
       );
     });
@@ -49,7 +49,7 @@ describe('Multishop | Components | CMEditViewCopyShop | utils', () => {
         { label: 'French', value: 2 },
       ];
       const currentShop = 'test';
-      expect(generateOptions(appShops, currentShop stores, permissions)).toEqual(
+      expect(generateOptions(appShops, currentShop, stores, permissions)).toEqual(
         expected
       );
     });
@@ -71,7 +71,7 @@ describe('Multishop | Components | CMEditViewCopyShop | utils', () => {
         { label: 'Italian', value: 3 },
       ];
 
-      expect(generateOptions(appShops, currentShop stores, permissions)).toEqual(
+      expect(generateOptions(appShops, currentShop, stores, permissions)).toEqual(
         expected
       );
     });
