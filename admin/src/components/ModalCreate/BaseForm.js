@@ -83,8 +83,7 @@ const BaseForm = ({ locales, defaultLocale }) => {
             defaultValue={defaultLocale}
             filterOption={reactSelectShopFilter}
             onChange={selection => {
-              setFieldValue('displayName', selection.value);
-              setFieldValue('code', selection.label);
+              setFieldValue('default_locale', selection.label);
             }}
             components={{ DropdownIndicator }}
             styles={{
