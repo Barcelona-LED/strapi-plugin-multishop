@@ -1,13 +1,13 @@
 import { has, get, omit } from 'lodash';
-import LOCALIZED_FIELDS from './shopEnabledFields';
+import MULTISHOP_FIELDS from './shopEnabledFields';
 
 const shopEnabledPath = ['pluginOptions', 'multishop', 'shopEnabled'];
 
-const addLocalisationToFields = attributes =>
+const addMultishopToFields = attributes =>
   Object.keys(attributes).reduce((acc, current) => {
     const currentAttribute = attributes[current];
 
-    if (LOCALIZED_FIELDS.includes(currentAttribute.type)) {
+    if (MULTISHOP_FIELDS.includes(currentAttribute.type)) {
       const multishop = { shopEnabled: true };
 
       const pluginOptions = currentAttribute.pluginOptions
@@ -24,7 +24,7 @@ const addLocalisationToFields = attributes =>
     return acc;
   }, {});
 
-const disableAttributesLocalisation = attributes =>
+const disableAttributesMultishop = attributes =>
   Object.keys(attributes).reduce((acc, current) => {
     acc[current] = omit(attributes[current], 'pluginOptions.multishop');
 
@@ -47,7 +47,7 @@ const mutateCTBContentTypeSchema = (nextSchema, prevSchema) => {
   }
 
   if (isNextSchemaShopEnabled) {
-    const attributes = addLocalisationToFields(nextSchema.attributes);
+    const attributes = addMultishopToFields(nextSchema.attributes);
 
     return { ...nextSchema, attributes };
   }
@@ -55,7 +55,7 @@ const mutateCTBContentTypeSchema = (nextSchema, prevSchema) => {
   // Remove the multishop object from the pluginOptions
   if (!isNextSchemaShopEnabled) {
     const pluginOptions = omit(nextSchema.pluginOptions, 'multishop');
-    const attributes = disableAttributesLocalisation(nextSchema.attributes);
+    const attributes = disableAttributesMultishop(nextSchema.attributes);
 
     return { ...nextSchema, pluginOptions, attributes };
   }
@@ -63,4 +63,4 @@ const mutateCTBContentTypeSchema = (nextSchema, prevSchema) => {
   return nextSchema;
 };
 export default mutateCTBContentTypeSchema;
-export { addLocalisationToFields, disableAttributesLocalisation };
+export { addMultishopToFields, disableAttributesMultishop };

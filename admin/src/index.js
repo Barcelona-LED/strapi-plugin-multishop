@@ -14,7 +14,7 @@ import pluginId from './pluginId';
 import trads from './translations';
 import { getTrad } from './utils';
 import mutateCTBContentTypeSchema from './utils/mutateCTBContentTypeSchema';
-import LOCALIZED_FIELDS from './utils/shopEnabledFields';
+import MULTISHOP_FIELDS from './utils/shopEnabledFields';
 import multishopReducers from './hooks/reducers';
 import DeleteModalAdditionalInfos from './components/DeleteModalAdditionalInfos';
 
@@ -102,7 +102,7 @@ export default strapi => {
           },
         });
 
-        ctbFormsAPI.extendFields(LOCALIZED_FIELDS, {
+        ctbFormsAPI.extendFields(MULTISHOP_FIELDS, {
           validator: args => ({
             multishop: yup.object().shape({
               shopEnabled: yup.bool().test({

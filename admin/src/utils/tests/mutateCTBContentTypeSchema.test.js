@@ -1,6 +1,6 @@
 import mutateSchema, {
-  addLocalisationToFields,
-  disableAttributesLocalisation,
+  addMultishopToFields,
+  disableAttributesMultishop,
 } from '../mutateCTBContentTypeSchema';
 
 describe('multishop | utils ', () => {
@@ -136,14 +136,14 @@ describe('multishop | utils ', () => {
     });
   });
 
-  describe('multishop addLocalisationToFields', () => {
+  describe('multishop addMultishopToFields', () => {
     it('should forward the data if the attribute type is not correct', () => {
       const attributes = {
         foo: { type: 'relation' },
         bar: { type: 'custom' },
       };
 
-      expect(addLocalisationToFields(attributes)).toEqual(attributes);
+      expect(addMultishopToFields(attributes)).toEqual(attributes);
     });
 
     it('should keep the pluginOptions for each attribute and enable the multishop.shopEnabled value', () => {
@@ -161,7 +161,7 @@ describe('multishop | utils ', () => {
         bar: { type: 'text', pluginOptions: { multishop: { shopEnabled: true } } },
       };
 
-      expect(addLocalisationToFields(attributes)).toEqual(expected);
+      expect(addMultishopToFields(attributes)).toEqual(expected);
     });
 
     it('should enable the pluginOptions.multishop.shopEnabled value for each attribute', () => {
@@ -179,11 +179,11 @@ describe('multishop | utils ', () => {
         bar: { type: 'text', pluginOptions: { multishop: { shopEnabled: true } } },
       };
 
-      expect(addLocalisationToFields(attributes)).toEqual(expected);
+      expect(addMultishopToFields(attributes)).toEqual(expected);
     });
   });
 
-  describe('disableAttributesLocalisation', () => {
+  describe('disableAttributesMultishop', () => {
     it('should remove the pluginOptions.multishop for all attributes', () => {
       const attributes = {
         foo: {
@@ -199,7 +199,7 @@ describe('multishop | utils ', () => {
         bar: { type: 'text', pluginOptions: {} },
       };
 
-      expect(disableAttributesLocalisation(attributes)).toEqual(expected);
+      expect(disableAttributesMultishop(attributes)).toEqual(expected);
     });
   });
 });

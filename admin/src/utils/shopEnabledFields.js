@@ -1,4 +1,4 @@
-const LOCALIZED_FIELDS = [
+const MULTISHOP_FIELDS = [
   'biginteger',
   'boolean',
   'component',
@@ -20,4 +20,4 @@ const LOCALIZED_FIELDS = [
   'time',
 ];
 
-export default LOCALIZED_FIELDS;
+export default MULTISHOP_FIELDS;
