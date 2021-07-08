@@ -21,9 +21,9 @@
       "min": 1,
       "max": 50
     },
-    "default_shop": {
-      "plugin": "multishop",
-      "model": "shop"
+    "default_locale": {
+      "plugin": "i18n",
+      "model": "locale"
     },
     "url": {
       "type": "string",
