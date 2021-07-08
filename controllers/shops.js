@@ -92,8 +92,8 @@ module.exports = {
       return ctx.notFound('shop.notFound');
     }
 
-    const defaultShopCode = await shopsService.getDefaultShop();
-    if (existingShop.code === defaultShopCode) {
+    const defaultShopId = await shopsService.getDefaultShop();
+    if (existingShop._id === defaultShopId) {
       return ctx.badRequest('Cannot delete the default shop');
     }
 

@@ -21,7 +21,7 @@ const getValidShop = async shop => {
     return shopsService.getDefaultShop();
   }
 
-  const foundShop = await shopsService.findByCode(shop);
+  const foundShop = await shopsService.findById(shop);
   if (!foundShop) {
     throw new Error('Shop not found');
   }
