@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Duplicate } from '@buffetjs/icons';
 import { Label, Padded, Text } from '@buffetjs/core';
 import Select from 'react-select';
@@ -160,20 +159,5 @@ const Content = ({ appShops, currentShop, stores, readPermissions }) => {
   );
 };
 
-CMEditViewCopyShop.propTypes = {
-  stores: PropTypes.array.isRequired,
-};
-
-Content.propTypes = {
-  appShops: PropTypes.arrayOf(
-    PropTypes.shape({
-      code: PropTypes.string.isRequired,
-      name: PropTypes.string,
-    })
-  ).isRequired,
-  currentShop: PropTypes.string.isRequired,
-  stores: PropTypes.array.isRequired,
-  readPermissions: PropTypes.array.isRequired,
-};
 
 export default CMEditViewCopyShop;

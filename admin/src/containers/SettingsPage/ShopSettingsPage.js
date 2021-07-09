@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { BaselineAlignment } from 'strapi-helper-plugin';
 import { Header } from '@buffetjs/custom';
@@ -57,13 +56,6 @@ const ShopSettingsPage = ({
       ) : null}
     </>
   );
-};
-
-ShopSettingsPage.propTypes = {
-  canReadShop: PropTypes.bool.isRequired,
-  canCreateShop: PropTypes.bool.isRequired,
-  canUpdateShop: PropTypes.bool.isRequired,
-  canDeleteShop: PropTypes.bool.isRequired,
 };
 
 export default ShopSettingsPage;
