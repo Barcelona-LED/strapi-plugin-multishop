@@ -44,7 +44,7 @@ const deleteFn = async ({ id }) => {
   return shopToDelete;
 };
 
-const setDefaultShop = ({ _id }) => getCoreStore().set({ key: 'default_shop', value: _id });
+const setDefaultShop = ({ id }) => getCoreStore().set({ key: 'default_shop', value: id });
 
 const getDefaultShop = () => getCoreStore().get({ key: 'default_shop' });
 
@@ -56,10 +56,12 @@ const setIsDefault = async shops => {
   const actualDefault = await getDefaultShop();
 
   if (Array.isArray(shops)) {
-    return shops.map(shop => ({ ...shop, isDefault: actualDefault === shop._id }));
+    return shops.map(shop => {
+      return { ...shop, isDefault: actualDefault === shop.id }
+    });
   } else {
     // single shop
-    return { ...shops, isDefault: actualDefault === shops._id };
+    return { ...shops, isDefault: actualDefault === shops.id };
   }
 };
 

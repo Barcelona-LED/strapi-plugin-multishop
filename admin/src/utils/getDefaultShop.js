@@ -1,9 +1,9 @@
 import get from 'lodash/get';
 
-const hasShopPermission = (permissions, shopCode) => {
+const hasShopPermission = (permissions, shopId) => {
   if (permissions) {
     const hasPermission = permissions.some(permission =>
-      get(permission, 'properties.shops', []).includes(shopCode)
+      get(permission, 'properties.shops', []).includes(shopId)
     );
 
     if (hasPermission) {
@@ -39,12 +39,12 @@ const getDefaultShop = (ctPermissions, shops = []) => {
   const readPermissions = ctPermissions['plugins::content-manager.explorer.read'];
   const createPermissions = ctPermissions['plugins::content-manager.explorer.create'];
 
-  if (hasShopPermission(readPermissions, defaultShop.code)) {
-    return defaultShop.code;
+  if (hasShopPermission(readPermissions, defaultShop.id)) {
+    return defaultShop.id;
   }
 
-  if (hasShopPermission(createPermissions, defaultShop.code)) {
-    return defaultShop.code;
+  if (hasShopPermission(createPermissions, defaultShop.id)) {
+    return defaultShop.id;
   }
 
   // When the default shop is not authorized, we return the first authorized shop

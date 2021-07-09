@@ -1,6 +1,6 @@
 const createShopsOption = (shopsToDisplay, shopsFromData) => {
-  return shopsToDisplay.map(({ name, code }) => {
-    const matchingShopInData = shopsFromData.find(({ shop }) => shop === code);
+  return shopsToDisplay.map(({ name, id }) => {
+    const matchingShopInData = shopsFromData.find(({ shop }) => shop === id);
 
     let status = 'did-not-create-shop';
 
@@ -11,7 +11,7 @@ const createShopsOption = (shopsToDisplay, shopsFromData) => {
     return {
       id: matchingShopInData ? matchingShopInData.id : null,
       label: name,
-      value: code,
+      value: id,
       status,
     };
   });

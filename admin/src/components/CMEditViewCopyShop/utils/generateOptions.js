@@ -2,19 +2,19 @@ import get from 'lodash/get';
 
 const generateOptions = (appShops, currentShop, stores, permissions) => {
   return appShops
-    .filter(({ code }) => {
+    .filter(({ id }) => {
       return (
-        code !== currentShop &&
-        (stores || []).findIndex(({ shop }) => shop === code) !== -1
+        id !== currentShop &&
+        (stores || []).findIndex(({ shop }) => shop === id) !== -1
       );
     })
-    .filter(({ code }) => {
-      return permissions.some(({ properties }) => get(properties, 'shops', []).includes(code));
+    .filter(({ id }) => {
+      return permissions.some(({ properties }) => get(properties, 'shops', []).includes(id));
     })
     .map(shop => {
       return {
         label: shop.name,
-        value: stores.find(loc => shop.code === loc.shop).id,
+        value: shop.id,
       };
     });
 };

@@ -63,10 +63,10 @@ const ShopPicker = () => {
 
   const displayedShops = shops.filter(shop => {
     const canCreate = createPermissions.find(({ properties }) => {
-      return get(properties, 'shops', []).includes(shop.code);
+      return get(properties, 'shops', []).includes(shop.id);
     });
     const canRead = readPermissions.find(({ properties }) =>
-      get(properties, 'shops', []).includes(shop.code)
+      get(properties, 'shops', []).includes(shop.id)
     );
 
     return canCreate || canRead;
@@ -90,7 +90,7 @@ const ShopPicker = () => {
           setSelected(shop);
 
           setQuery({
-            plugins: { ...query.plugins, multishop: { shop: shop.code } },
+            plugins: { ...query.plugins, multishop: { shop: shop.id } },
           });
           onToggle();
         };

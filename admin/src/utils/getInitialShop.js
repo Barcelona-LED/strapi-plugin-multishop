@@ -4,7 +4,7 @@ const getInitialShop = (query, shops = []) => {
   const shopFromQuery = getShopFromQuery(query);
 
   if (shopFromQuery) {
-    return shops.find(shop => shop.code === shopFromQuery);
+    return shops.find(shop => shop.id === shopFromQuery);
   }
 
   // Returns the default shop when nothing is in the query

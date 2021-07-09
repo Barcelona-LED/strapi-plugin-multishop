@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Padded, Text } from '@buffetjs/core';
 import { Tooltip } from '@buffetjs/styles';
 import get from 'lodash/get';
@@ -20,15 +19,15 @@ const ShopName = styled.div`
 
 const ShopListCell = ({ shops, stores, shop: currentShopCode, id }) => {
   const allStores = [{ shop: currentShopCode }, ...stores];
-  const storeNames = allStores.map(shop => shop.shop);
+  const storeIds = allStores.map(shop => shop._id);
   const defaultShop = shops.find(shop => shop.isDefault);
-  const hasDefaultShop = storeNames.includes(defaultShop.code);
+  const hasDefaultShop = storeIds.includes(defaultShop._id);
 
   let shopsArray = [];
 
   if (hasDefaultShop) {
-    const ctShopsWithoutDefault = storeNames.filter(
-      shop => shop !== defaultShop.code
+    const ctShopsWithoutDefault = storeIds.filter(
+      shop => shop !== defaultShop._id
     );
     const ctShopsNamesWithoutDefault = ctShopsWithoutDefault.map(shop =>
       mapToShopName(shops, shop)
@@ -43,7 +42,7 @@ const ShopListCell = ({ shops, stores, shop: currentShopCode, id }) => {
 
     shopsArray = ctShopsNamesWithDefault;
   } else {
-    const ctShops = storeNames.map(shop => mapToShopName(shops, shop));
+    const ctShops = storeIds.map(shop => mapToShopName(shops, shop));
     ctShops.sort();
 
     shopsArray = ctShops;
@@ -68,23 +67,6 @@ const ShopListCell = ({ shops, stores, shop: currentShopCode, id }) => {
       </Tooltip>
     </div>
   );
-};
-
-ShopListCell.propTypes = {
-  id: PropTypes.number.isRequired,
-  stores: PropTypes.arrayOf(
-    PropTypes.shape({
-      shop: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  shops: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      code: PropTypes.string.isRequired,
-      isDefault: PropTypes.bool,
-    })
-  ).isRequired,
-  shop: PropTypes.string.isRequired,
 };
 
 export default ShopListCell;

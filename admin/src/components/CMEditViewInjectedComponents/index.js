@@ -16,8 +16,8 @@ const CMEditViewInjectedComponents = () => {
 
   const id = get(params, 'id', null);
   const currentEntityId = id;
-  const defaultShop = shops.find(loc => loc.isDefault);
-  const currentShop = get(query, 'plugins.multishop.shop', defaultShop.code);
+  const defaultShop = shops.find(shop => shop.isDefault);
+  const currentShop = get(query, 'plugins.multishop.shop', defaultShop.id);
   const hasMultishopEnabled = get(layout, ['pluginOptions', 'multishop', 'shopEnabled'], false);
   const hasDraftAndPublishEnabled = get(layout, ['options', 'draftAndPublish'], false);
 

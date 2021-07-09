@@ -49,7 +49,7 @@ const addAllShopsToPermissions = async permissions => {
   const { find: findAllShops } = getService('shops');
 
   const allShops = await findAllShops();
-  const allShopsUrl = allShops.map(prop('url'));
+  const allShopsId = allShops.map(prop('id'));
 
   return Promise.all(
     permissions.map(async permission => {
@@ -67,7 +67,7 @@ const addAllShopsToPermissions = async permissions => {
 
       const oldPermissionProperties = getOr({}, 'properties', permission);
 
-      return { ...permission, properties: { ...oldPermissionProperties, shops: allShopsUrl } };
+      return { ...permission, properties: { ...oldPermissionProperties, shops: allShopsId } };
     })
   );
 };
