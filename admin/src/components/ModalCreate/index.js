@@ -31,8 +31,8 @@ const ModalCreate = ({ onClose, isOpened }) => {
 
   const options = (locales || [])
     .map(locale => ({
-      label: locale.code,
-      value: locale.name,
+      label: locale.name,
+      value: locale._id,
     }));
 
   const defaultOption = options[0];
@@ -50,12 +50,13 @@ const ModalCreate = ({ onClose, isOpened }) => {
       <Formik
         initialValues={{
           displayName: "",
-          default_shop: defaultOption,
+          default_locale: defaultOption.value,
+          url: "",
           isDefault: false,
         }}
         onSubmit={values =>
           addShop({
-            default_locale: values.defaultLocale,
+            default_locale: values.default_locale,
             name: values.displayName,
             url: values.url,
             isDefault: values.isDefault,
@@ -83,7 +84,7 @@ const ModalCreate = ({ onClose, isOpened }) => {
               <TabPanel>
                 <BaseForm
                   locales={options}
-                  defaultShop={defaultOption}
+                  defaultLocale={defaultOption}
                 />
               </TabPanel>
               <TabPanel>

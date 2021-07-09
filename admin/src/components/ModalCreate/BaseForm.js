@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Label } from '@buffetjs/core';
 import { Inputs } from '@buffetjs/custom';
 import Select, { createFilter } from 'react-select';
@@ -10,7 +9,7 @@ import { BaselineAlignment, selectStyles, DropdownIndicator } from 'strapi-helpe
 import { useFormikContext } from 'formik';
 import { getTrad } from '../../utils';
 
-const reactSelectShopFilter = createFilter({
+const reactSelectLocaleFilter = createFilter({
   ignoreCase: true,
   ignoreAccents: true,
   matchFrom: 'start',
@@ -81,9 +80,9 @@ const BaseForm = ({ locales, defaultLocale }) => {
             aria-labelledby="shop"
             options={locales}
             defaultValue={defaultLocale}
-            filterOption={reactSelectShopFilter}
+            filterOption={reactSelectLocaleFilter}
             onChange={selection => {
-              setFieldValue('default_locale', selection.label);
+              setFieldValue('default_locale', selection.value);
             }}
             components={{ DropdownIndicator }}
             styles={{
