@@ -13,6 +13,7 @@ const validateShopCreation = async (ctx, next) => {
     isShopEnabledContentType,
     getAndValidateRelatedEntity,
     fillNonShopEnabledAttributes,
+    isLocalizedContentType
   } = getService('content-types');
 
   const modelDef = strapi.getModel(model);
@@ -23,8 +24,10 @@ const validateShopCreation = async (ctx, next) => {
 
   const shop = get('plugins.multishop.shop', query);
   const relatedEntityId = get('plugins.multishop.relatedEntityId', query);
-  // cleanup to avoid creating duplicates in singletypes
-  ctx.request.query = {};
+  if (!isLocalizedContentType || !isLocalizedContentType(modelDef)) {
+    // cleanup to avoid creating duplicates in singletypes
+    ctx.request.query = {};
+  }
 
   let entityShop;
   try {

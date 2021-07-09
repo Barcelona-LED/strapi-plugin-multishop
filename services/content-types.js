@@ -14,6 +14,10 @@ const hasShopEnabledOption = modelOrAttribute => {
   return prop('pluginOptions.multishop.shopEnabled', modelOrAttribute) === true;
 };
 
+const hasLocalizedOption = modelOrAttribute => {
+  return prop('pluginOptions.i18n.localized', modelOrAttribute) === true;
+};
+
 const getValidShop = async shop => {
   const shopsService = getService('shops');
 
@@ -96,6 +100,10 @@ const isShopEnabledAttribute = (model, attributeName) => {
  */
 const isShopEnabledContentType = model => {
   return hasShopEnabledOption(model);
+};
+
+const isLocalizedContentType = model => {
+  return hasLocalizedOption(model);
 };
 
 /**
@@ -194,6 +202,7 @@ const fillNonShopEnabledAttributes = (entry, relatedEntry, { model }) => {
 
 module.exports = {
   isShopEnabledContentType,
+  isLocalizedContentType,
   getValidShop,
   getNewStoresFrom,
   getShopEnabledAttributes,
