@@ -58,7 +58,7 @@ const ShopList = ({ canUpdateShop, canDeleteShop, onToggleCreateModal, isCreatin
           alreadyUsedShops={shops}
         />
         <ModalDelete shopToDelete={shopToDelete} onClose={closeModalToDelete} />
-        <ModalEdit shopToEdit={shopToEdit} onClose={closeModalToEdit} shops={shops} />
+        <ModalEdit shopToEdit={shopToEdit} onClose={closeModalToEdit} />
       </>
     );
   }
@@ -85,17 +85,6 @@ const ShopList = ({ canUpdateShop, canDeleteShop, onToggleCreateModal, isCreatin
       <ModalCreate isOpened={isCreating} onClose={onToggleCreateModal} />
     </>
   );
-};
-
-ShopList.defaultProps = {
-  onToggleCreateModal: undefined,
-};
-
-ShopList.propTypes = {
-  canUpdateShop: PropTypes.bool.isRequired,
-  canDeleteShop: PropTypes.bool.isRequired,
-  onToggleCreateModal: PropTypes.func,
-  isCreating: PropTypes.bool.isRequired,
 };
 
 export default ShopList;

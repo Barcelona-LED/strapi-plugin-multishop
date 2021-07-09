@@ -70,7 +70,7 @@ module.exports = {
       return ctx.notFound('shop.notFound');
     }
 
-    const allowedParams = ['name'];
+    const allowedParams = ['name', 'default_locale', 'url'];
     const cleanUpdates = setCreatorFields({ user, isEdition: true })(pick(allowedParams, updates));
 
     const updatedShop = await shopsService.update({ id }, cleanUpdates);

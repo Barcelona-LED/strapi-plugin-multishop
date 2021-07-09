@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Pencil } from '@buffetjs/icons';
 import { Text, IconLinks } from '@buffetjs/core';
@@ -40,10 +39,13 @@ const ShopSettingsPage = ({ shop, onDelete, onEdit }) => {
   return (
     <CustomRow onClick={() => onEdit(shop)}>
       <td>
-        <Text>{shop.code}</Text>
+        <Text fontWeight="regular">{shop.name}</Text>
       </td>
       <td>
-        <Text fontWeight="regular">{shop.name}</Text>
+        <Text fontWeight="regular">{shop.url}</Text>
+      </td>
+      <td>
+        <Text fontWeight="regular">{shop.default_locale && shop.default_locale.name}</Text>
       </td>
       <td>
         <Text>
@@ -57,21 +59,6 @@ const ShopSettingsPage = ({ shop, onDelete, onEdit }) => {
       </td>
     </CustomRow>
   );
-};
-
-ShopSettingsPage.defaultProps = {
-  onDelete: undefined,
-  onEdit: undefined,
-};
-
-ShopSettingsPage.propTypes = {
-  shop: PropTypes.shape({
-    isDefault: PropTypes.bool,
-    name: PropTypes.string,
-    code: PropTypes.string.isRequired,
-  }).isRequired,
-  onDelete: PropTypes.func,
-  onEdit: PropTypes.func,
 };
 
 export default ShopSettingsPage;

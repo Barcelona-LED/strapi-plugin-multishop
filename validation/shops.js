@@ -16,6 +16,7 @@ const createShopSchema = yup
       .string()
       .required(),
     isDefault: yup.boolean().required(),
+    default_locale: yup.string()
   })
   .noUnknown();
 
@@ -32,6 +33,8 @@ const updateShopSchema = yup
       .max(50)
       .nullable(),
     isDefault: yup.boolean(),
+    url: yup.string(),
+    default_locale: yup.string()
   })
   .noUnknown();
 

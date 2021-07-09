@@ -5,13 +5,14 @@ import get from 'lodash/get';
 import { getTrad } from '../../utils';
 import { ADD_SHOP } from '../constants';
 
-const addShop = async ({ name, url, isDefault }) => {
+const addShop = async ({ name, url, isDefault, default_locale }) => {
   const data = await request(`/multishop/shops`, {
     method: 'POST',
     body: {
       name,
       url,
       isDefault,
+      default_locale
     },
   });
 
