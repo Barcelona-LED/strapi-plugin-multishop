@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Label } from '@buffetjs/core';
 import { Inputs } from '@buffetjs/custom';
-import Select from 'react-select';
+import Select, { createFilter } from 'react-select';
 import { Col, Row } from 'reactstrap';
 import { useIntl } from 'react-intl';
 import { useTheme } from 'styled-components';
@@ -10,9 +8,15 @@ import { BaselineAlignment, selectStyles, DropdownIndicator } from 'strapi-helpe
 import { useFormikContext } from 'formik';
 import { getTrad } from '../../utils';
 
-const BaseForm = ({ shops, defaultShop }) => {
+const reactSelectLocaleFilter = createFilter({
+  ignoreCase: true,
+  ignoreAccents: true,
+  matchFrom: 'start',
+});
+
+const BaseForm = ({ options, defaultOption }) => {
   const { formatMessage } = useIntl();
-  const { values, handleChange } = useFormikContext();
+  const { values, handleChange, setFieldValue } = useFormikContext();
   const theme = useTheme();
   const styles = selectStyles(theme);
 
@@ -72,12 +76,11 @@ const BaseForm = ({ shops, defaultShop }) => {
       <Col>
         <Select
             aria-labelledby="shop"
-            options={shops}
-            defaultValue={defaultShop}
-            filterOption={reactSelectShopFilter}
+            options={options}
+            defaultValue={defaultOption}
+            filterOption={reactSelectLocaleFilter}
             onChange={selection => {
-              setFieldValue('displayName', selection.value);
-              setFieldValue('code', selection.label);
+              setFieldValue('default_locale', selection.value);
             }}
             components={{ DropdownIndicator }}
             styles={{

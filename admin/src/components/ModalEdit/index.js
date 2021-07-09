@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
 import { Modal, ModalFooter, TabPanel, useGlobalContext } from 'strapi-helper-plugin';
 import { useIntl } from 'react-intl';
 import { Button } from '@buffetjs/core';
@@ -10,19 +9,31 @@ import { getTrad } from '../../utils';
 import BaseForm from './BaseForm';
 import AdvancedForm from './AdvancedForm';
 import SettingsModal from '../SettingsModal';
+import useLocales from '../../hooks/useLocales';
 
-const ModalEdit = ({ shopToEdit, onClose, shops }) => {
+const ModalEdit = ({ shopToEdit, onClose }) => {
   const { isEditing, editShop } = useEditShop();
   const shouldUpdateMenu = useRef(false);
   const { updateMenu } = useGlobalContext();
   const { formatMessage } = useIntl();
   const isOpened = Boolean(shopToEdit);
+  const { locales, isLoading } = useLocales()
 
-  const handleSubmit = ({ displayName, isDefault }) => {
+  if (isLoading) {
+    return (
+      <div>
+        <p>
+          {formatMessage({ id: getTrad('Settings.shops.modal.create.defaultShops.loading') })}
+        </p>
+      </div>
+    );
+  }
+
+  const handleSubmit = ({ displayName, isDefault, default_locale, url }) => {
     const id = shopToEdit.id;
-    const name = displayName || shopToEdit.code;
+    const name = displayName || shopToEdit.name;
 
-    return editShop(id, { name, isDefault })
+    return editShop(id, { name, isDefault, default_locale, url })
       .then(() => {
         shouldUpdateMenu.current = true;
       })
@@ -41,8 +52,8 @@ const ModalEdit = ({ shopToEdit, onClose, shops }) => {
   let defaultOption;
 
   if (shopToEdit) {
-    options = shops.map(shop => ({ label: shop.code, value: shop.id }));
-    defaultOption = options.find(option => option.value === shopToEdit.id);
+    options = locales.map(locale => ({ label: locale.code, value: locale.id }));
+    defaultOption = options.find(option => option.value === shopToEdit.default_locale);
   }
 
   return (
@@ -51,6 +62,8 @@ const ModalEdit = ({ shopToEdit, onClose, shops }) => {
         initialValues={{
           displayName: shopToEdit ? shopToEdit.name : '',
           isDefault: shopToEdit ? shopToEdit.isDefault : false,
+          url: shopToEdit ? shopToEdit.url : false,
+          default_code: shopToEdit ? shopToEdit.default_code : false
         }}
         onSubmit={handleSubmit}
         validationSchema={shopFormSchema}
@@ -95,28 +108,6 @@ const ModalEdit = ({ shopToEdit, onClose, shops }) => {
       </Formik>
     </Modal>
   );
-};
-
-ModalEdit.defaultProps = {
-  shopToEdit: undefined,
-  shops: [],
-};
-
-ModalEdit.propTypes = {
-  shopToEdit: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    code: PropTypes.string.isRequired,
-    isDefault: PropTypes.bool.isRequired,
-  }),
-  onClose: PropTypes.func.isRequired,
-  shops: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      code: PropTypes.string,
-    })
-  ),
 };
 
 export default ModalEdit;
