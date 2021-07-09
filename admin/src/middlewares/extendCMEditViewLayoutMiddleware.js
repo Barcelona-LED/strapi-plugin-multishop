@@ -1,6 +1,6 @@
 import React from 'react';
 import get from 'lodash/get';
-import { Globe, GlobeCrossed } from '@buffetjs/icons';
+import { Component, Remove } from '@buffetjs/icons';
 import { getTrad } from '../utils';
 
 const enhanceRelationLayout = (layout, shop) =>
@@ -10,7 +10,7 @@ const enhanceRelationLayout = (layout, shop) =>
         id: getTrad('Field.shopEnabled'),
         defaultMessage: 'This value is unique for the selected shop',
       },
-      icon: <Globe />,
+      icon: <Component fill="#000"/>,
     };
     let queryInfos = current.queryInfos;
 
@@ -42,7 +42,7 @@ const enhanceEditLayout = layout =>
             ? 'This value is unique for the selected shop'
             : 'This value is common to all shops',
         },
-        icon: hasMultishopEnabled ? <Globe /> : <GlobeCrossed />,
+        icon: hasMultishopEnabled ? <Component fill="#000" /> : <Remove fill="#000" />,
       };
 
       acc.push({ ...field, labelIcon });
