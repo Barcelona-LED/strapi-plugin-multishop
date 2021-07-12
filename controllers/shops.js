@@ -13,6 +13,28 @@ const sanitizeShop = shop => {
 };
 
 module.exports = {
+  async getShop(ctx) {
+    const { id } = ctx;
+
+    const shop = await strapi.plugins['multishop'].services.shops.findById(id);
+
+    if (_.isEmpty(shop)) {
+      return ctx.badRequest(null, [{ messages: [{id: 'Shop does not exist'}] }]);
+    }
+
+    ctx.send({ shop });
+  },
+
+  async getShops(ctx) {
+    try {
+      const shops = await strapi.plugins['multishop'].services.shops.find();
+      
+      ctx.send({ shops });
+    } catch (err) {
+      ctx.badRequest(null, [{ messages: [{id: 'Not found'}] }]);
+    }
+  },
+
   async listShops(ctx) {
     const shopsService = getService('shops');
 
