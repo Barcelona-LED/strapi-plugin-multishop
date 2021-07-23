@@ -1,6 +1,8 @@
 import React from 'react';
 import get from 'lodash/get';
-import { Component, Remove } from '@buffetjs/icons';
+import StoreIcon from '@material-ui/icons/Store';
+import StoreOutlinedIcon from '@material-ui/icons/StoreOutlined';
+import { Globe, GlobeCrossed } from '@buffetjs/icons';
 import { getTrad } from '../utils';
 
 const enhanceRelationLayout = (layout, shop) =>
@@ -10,7 +12,7 @@ const enhanceRelationLayout = (layout, shop) =>
         id: getTrad('Field.shopEnabled'),
         defaultMessage: 'This value is unique for the selected shop',
       },
-      icon: <Component fill="#000"/>,
+      icon: <StoreIcon />,
     };
     let queryInfos = current.queryInfos;
 
@@ -35,6 +37,12 @@ const enhanceEditLayout = layout =>
         type === 'uid'
       );
 
+      const isLocalized = get(
+        field,
+        ['fieldSchema', 'pluginOptions', 'i18n', 'localized'],
+        type === 'uid'
+      );
+
       const labelIcon = {
         title: {
           id: hasMultishopEnabled ? getTrad('Field.shopEnabled') : getTrad('Field.not-shopEnabled'),
@@ -42,7 +50,7 @@ const enhanceEditLayout = layout =>
             ? 'This value is unique for the selected shop'
             : 'This value is common to all shops',
         },
-        icon: hasMultishopEnabled ? <Component fill="#000" /> : <Remove fill="#000" />,
+        icon: <>{hasMultishopEnabled ? <StoreIcon />  : <StoreOutlinedIcon />}{isLocalized ? <Globe /> : <GlobeCrossed />}</>,
       };
 
       acc.push({ ...field, labelIcon });

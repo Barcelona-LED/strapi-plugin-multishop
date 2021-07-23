@@ -9,6 +9,8 @@
     "required": false
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.11.2",
     "lodash": "4.17.20",
     "p-map": "4.0.0",
     "pluralize": "8.0.0",
