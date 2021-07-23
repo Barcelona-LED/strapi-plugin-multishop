@@ -21,6 +21,8 @@
   "CMEditViewCopyShop.submit-text": "Yes, fill in",
   "Field.shopEnabled": "This value is unique for the selected shop",
   "Field.not-shopEnabled": "This value is common to all shops",
+  "Field.shopEnabledAndLocale": "This value is unique for the selected shop and selected locale",
+  "Field.not-shopEnabledAndLocale": "This value is common to all shops but unique for selected locale",
   "Settings.list.description": "Configure the settings for the multishop plugin",
   "Settings.list.empty.title": "There are no shops.",
   "Settings.list.empty.description": "This is not a usual behavior, meaning that you have eventually modified the database manually. Make sure to have at least one shop saved in your database in order to be able to use Strapi correctly.",

@@ -45,10 +45,10 @@ const enhanceEditLayout = layout =>
 
       const labelIcon = {
         title: {
-          id: hasMultishopEnabled ? getTrad('Field.shopEnabled') : getTrad('Field.not-shopEnabled'),
+          id: hasMultishopEnabled ? (isLocalized ? getTrad('Field.shopEnabledAndLocale') : getTrad('Field.shopEnabled')) :  (isLocalized ? getTrad('Field.not-shopEnabledAndLocale') : getTrad('Field.not-shopEnabled')) ,
           defaultMessage: hasMultishopEnabled
-            ? 'This value is unique for the selected shop'
-            : 'This value is common to all shops',
+            ? `This value is unique for the selected shop ${isLocalized && ' and selected locale'}`
+            : `This value is common to all shops ${isLocalized && ' but unique for selected locale'}`,
         },
         icon: <>{hasMultishopEnabled ? <StoreIcon />  : <StoreOutlinedIcon />}{isLocalized ? <Globe /> : <GlobeCrossed />}</>,
       };
