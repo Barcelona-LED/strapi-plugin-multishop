@@ -69,7 +69,7 @@ const initDefaultShop = async () => {
   const existingShopsNb = await strapi.query('shop', 'multishop').count();
   if (existingShopsNb === 0) {
     const shop = await create({ name: 'default', url: "/" });
-    await setDefaultShop({ _id: shop._id });
+    await setDefaultShop({ id: shop.id });
   }
 };
 
