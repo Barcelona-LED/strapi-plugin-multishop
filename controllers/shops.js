@@ -1,6 +1,7 @@
 'use strict';
 
 const { setCreatorFields, sanitizeEntity } = require('strapi-utils');
+const _ = require("lodash");
 const { pick } = require('lodash/fp');
 const { getService } = require('../utils');
 const { validateCreateShopInput, validateUpdateShopInput } = require('../validation/shops');
