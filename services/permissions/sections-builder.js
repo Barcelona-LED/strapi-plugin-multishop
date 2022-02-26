@@ -29,7 +29,7 @@ const shopsPropertyHandler = async ({ action, section }) => {
       subject.properties.push({
         label: 'Shops',
         value: 'shops',
-        children: shops.map(({ name, code }) => ({ label: name || code, value: code })),
+        children: shops.map(({ name, id }) => ({ label: name || id, value: id.toString() })),
       });
     }
   }

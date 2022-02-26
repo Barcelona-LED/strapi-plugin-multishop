@@ -49,7 +49,7 @@ const addAllShopsToPermissions = async permissions => {
   const { find: findAllShops } = getService('shops');
 
   const allShops = await findAllShops();
-  const allShopsId = allShops.map(prop('id'));
+  const allShopsId = allShops.map(shop => shop.id.toString());
 
   return Promise.all(
     permissions.map(async permission => {
